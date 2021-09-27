@@ -8,11 +8,11 @@ import (
 func FormatError(err string) error {
 
 	if strings.Contains(err, "nickname") {
-		return errors.New("Nickname Already Taken")
+		return errors.New("Nickname must be unique")
 	}
 
 	if strings.Contains(err, "email") {
-		return errors.New("Email Already Taken")
+		return errors.New("Email must be unique")
 	}
 
 	if strings.Contains(err, "title") {
