@@ -8,7 +8,7 @@ func (s *Server) initializeRoutes() {
 	s.Router.HandleFunc("/", middlewares.SetMiddlewareJSON(s.Home)).Methods("GET")
 
 	// Login Routes
-	s.Router.HandleFunc("/login", middlewares.SetMiddlewareJSON(s.Login)).Methods("POST")
+	s.Router.HandleFunc("/user_login", middlewares.SetMiddlewareJSON(s.Login)).Methods("POST")
 
 	//Users routess
 	s.Router.HandleFunc("/users_create", middlewares.SetMiddlewareJSON(s.CreateUser)).Methods("POST")
@@ -22,6 +22,6 @@ func (s *Server) initializeRoutes() {
 	s.Router.HandleFunc("/posts_read", middlewares.SetMiddlewareJSON(s.GetPosts)).Methods("GET")
 	s.Router.HandleFunc("/posts_update/{id}", middlewares.SetMiddlewareJSON(middlewares.SetMiddlewareAuthentication(s.UpdatePost))).Methods("PUT")
 	s.Router.HandleFunc("/posts_delete/{id}", middlewares.SetMiddlewareAuthentication(s.DeletePost)).Methods("DELETE")
-	s.Router.HandleFunc("/posts_find/{id}", middlewares.SetMiddlewareJSON(s.GetPost)).Methods("GET")
+	s.Router.HandleFunc("/posts_find/{id}", middlewares.SetMiddlewareJSON(s.GetPost)).Methods("POST")
 
 }
