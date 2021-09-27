@@ -105,7 +105,7 @@ func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 	post := models.Post{}
 	err = server.DB.Debug().Model(models.Post{}).Where("id = ?", pid).Take(&post).Error
 	if err != nil {
-		responses.ERROR(w, http.StatusNotFound, errors.New("Post not found"))
+		responses.ERROR(w, http.StatusNotFound, errors.New("post not found"))
 		return
 	}
 
