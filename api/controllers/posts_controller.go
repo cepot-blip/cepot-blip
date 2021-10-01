@@ -15,6 +15,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+//		CREATE POSTINGAN
 func (server *Server) CreatePost(w http.ResponseWriter, r *http.Request) {
 
 	body, err := ioutil.ReadAll(r.Body)
@@ -53,6 +54,8 @@ func (server *Server) CreatePost(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusCreated, postCreated)
 }
 
+
+//		READ ALL POSTINGAN
 func (server *Server) GetPosts(w http.ResponseWriter, r *http.Request) {
 
 	post := models.Post{}
@@ -65,6 +68,8 @@ func (server *Server) GetPosts(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, posts)
 }
 
+
+//		FIND POSTINGAN BY ID
 func (server *Server) GetPost(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
@@ -83,6 +88,8 @@ func (server *Server) GetPost(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, postReceived)
 }
 
+
+//		UPDATE POSTINGAN
 func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
@@ -154,6 +161,8 @@ func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, postUpdated)
 }
 
+
+//		DELETE POSTINGAN
 func (server *Server) DeletePost(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)

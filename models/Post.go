@@ -31,13 +31,13 @@ func (p *Post) Prepare() {
 func (p *Post) Validate() error {
 
 	if p.Title == "" {
-		return errors.New("Required Title")
+		return errors.New("required Title")
 	}
 	if p.Content == "" {
-		return errors.New("Required Content")
+		return errors.New("required Content")
 	}
 	if p.AuthorID < 1 {
-		return errors.New("Required Author")
+		return errors.New("required Author")
 	}
 	return nil
 }

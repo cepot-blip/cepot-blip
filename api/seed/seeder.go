@@ -31,6 +31,17 @@ var posts = []models.Post{
 	},
 }
 
+var admin = []models.Admin{
+	models.Admin{
+		Email: "cepot",
+		Password: "1qazxsw2",
+	},
+	models.Admin{
+		Email: "pecok gabus",
+		Password: "1qazxsw2",
+	},
+}
+
 func Load(db *gorm.DB) {
 
 	err := db.Debug().DropTableIfExists(&models.Post{}, &models.User{}).Error

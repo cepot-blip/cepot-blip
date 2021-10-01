@@ -57,43 +57,43 @@ func (u *User) Validate(action string) error {
 	switch strings.ToLower(action) {
 	case "update":
 		if u.Nickname == "" {
-			return errors.New("Required Nickname")
+			return errors.New("required Nickname")
 		}
 		if u.Password == "" {
-			return errors.New("Required Password")
+			return errors.New("required Password")
 		}
 		if u.Email == "" {
-			return errors.New("Required Email")
+			return errors.New("required Email")
 		}
 		if err := checkmail.ValidateFormat(u.Email); err != nil {
-			return errors.New("Invalid Email")
+			return errors.New("invalid Email")
 		}
 
 		return nil
 	case "login":
 		if u.Password == "" {
-			return errors.New("Required Password")
+			return errors.New("required Password")
 		}
 		if u.Email == "" {
-			return errors.New("Required Email")
+			return errors.New("required Email")
 		}
 		if err := checkmail.ValidateFormat(u.Email); err != nil {
-			return errors.New("Invalid Email")
+			return errors.New("invalid Email")
 		}
 		return nil
 
 	default:
 		if u.Nickname == "" {
-			return errors.New("Required Nickname")
+			return errors.New("required Nickname")
 		}
 		if u.Password == "" {
-			return errors.New("Required Password")
+			return errors.New("required Password")
 		}
 		if u.Email == "" {
-			return errors.New("Required Email")
+			return errors.New("required Email")
 		}
 		if err := checkmail.ValidateFormat(u.Email); err != nil {
-			return errors.New("Invalid Email")
+			return errors.New("invalid Email")
 		}
 		return nil
 	}
@@ -103,7 +103,7 @@ func (u *User) Validate(action string) error {
 //		CREATE USERS
 func (u *User) SaveUser(db *gorm.DB) (*User, error) {
 
-	var err error
+	var _,err  error
 	err = db.Debug().Create(&u).Error
 	if err != nil {
 		return &User{}, err
@@ -122,9 +122,9 @@ func (u *User) FindAllUsers(db *gorm.DB) (*[]User, error) {
 }
 
 
-//		LOGIN USERS
+//		LOGIN USERS BY ID
 func (u *User) FindUserByID(db *gorm.DB, uid uint32) (*User, error) {
-	var err error
+	var _,err  error
 	err = db.Debug().Model(User{}).Where("id = ?", uid).Take(&u).Error
 	if err != nil {
 		return &User{}, err
@@ -139,7 +139,7 @@ func (u *User) FindUserByID(db *gorm.DB, uid uint32) (*User, error) {
 //		UPDATE USERS
 func (u *User) UpdateAUser(db *gorm.DB, uid uint32) (*User, error) {
 
-	// To hash the password
+	// Untuk hash password kembali
 	err := u.BeforeSave()
 	if err != nil {
 		log.Fatal(err)
@@ -155,7 +155,8 @@ func (u *User) UpdateAUser(db *gorm.DB, uid uint32) (*User, error) {
 	if db.Error != nil {
 		return &User{}, db.Error
 	}
-	// This is the display the updated user
+	
+	//   Ini adalah tampilan users yang diperbarui
 	err = db.Debug().Model(&User{}).Where("id = ?", uid).Take(&u).Error
 	if err != nil {
 		return &User{}, err
