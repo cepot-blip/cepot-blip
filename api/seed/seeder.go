@@ -31,16 +31,6 @@ var posts = []models.Post{
 	},
 }
 
-var admin = []models.Admin{
-	models.Admin{
-		Email: "cepot",
-		Password: "1qazxsw2",
-	},
-	models.Admin{
-		Email: "pecok gabus",
-		Password: "1qazxsw2",
-	},
-}
 
 func Load(db *gorm.DB) {
 
@@ -48,7 +38,7 @@ func Load(db *gorm.DB) {
 	if err != nil {
 		log.Fatalf("cannot drop table: %v", err)
 	}
-	err = db.Debug().AutoMigrate(&models.User{}, &models.Post{}).Error
+	err = db.Debug().AutoMigrate(&models.User{}, &models.Post{}, &models.Admin{}).Error
 	if err != nil {
 		log.Fatalf("cannot migrate table: %v", err)
 	}
@@ -70,4 +60,6 @@ func Load(db *gorm.DB) {
 			log.Fatalf("cannot seed posts table: %v", err)
 		}
 	}
+
 }
+

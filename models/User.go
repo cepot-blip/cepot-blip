@@ -111,6 +111,8 @@ func (u *User) SaveUser(db *gorm.DB) (*User, error) {
 	return u, nil
 }
 
+
+//		READ ALL USERS
 func (u *User) FindAllUsers(db *gorm.DB) (*[]User, error) {
 	var err error
 	users := []User{}
@@ -125,7 +127,7 @@ func (u *User) FindAllUsers(db *gorm.DB) (*[]User, error) {
 //		LOGIN USERS BY ID
 func (u *User) FindUserByID(db *gorm.DB, uid uint32) (*User, error) {
 	var _,err  error
-	err = db.Debug().Model(User{}).Where("id = ?", uid).Take(&u).Error
+	err = db.Debug().Model([]User{}).Where("id = ?", uid).Take(&u).Error
 	if err != nil {
 		return &User{}, err
 	}

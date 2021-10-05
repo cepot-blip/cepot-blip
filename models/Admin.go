@@ -3,6 +3,7 @@ package models
 import (
 	"errors"
 	"html"
+	"log"
 	"strings"
 	"time"
 
@@ -90,8 +91,19 @@ func (a *Admin) Validate(action string) error {
 
 
 //		CREATE ADMIN
-func (a *Admin) SaveAdmin(db *gorm.DB) (*[]Admin, error) {
-	var err error
+func (a *Admin) SaveAdmin(db *gorm.DB) (*Admin, error) {
+	var _,err  error
+	err = db.Debug().Create(&a).Error
+	if err != nil {
+		return &Admin{}, err
+	}
+	return a, nil
+}
+
+//		READ ALL ADMIN
+
+func (a *Admin) FindAllAdmin(db *gorm.DB)(*[]Admin, error) {
+	var err	error
 	admins := []Admin{}
 	err = db.Debug().Model(&Admin{}).Limit(100).Find(&admins).Error
 	if err != nil {
@@ -100,12 +112,13 @@ func (a *Admin) SaveAdmin(db *gorm.DB) (*[]Admin, error) {
 	return &admins, err
 }
 
-//		LOGIN ADMIN
-func (a *Admin) FindAdminByID(db *gorm.DB, uid uint32) (*Admin, error) {
+//		LOGIN ADMIN BY ID
+
+func (a *Admin)FindAdminByID(db *gorm.DB, uid uint32) (*Admin, error)  {
 	var _,err error
 	err = db.Debug().Model(Admin{}).Where("id = ?", uid).Take(&a).Error
 	if err != nil {
-		return &Admin{}, err
+		return &Admin{},err
 	}
 	if gorm.IsRecordNotFoundError(err) {
 		return &Admin{}, errors.New("Admin tidak ditemukan")
@@ -113,32 +126,30 @@ func (a *Admin) FindAdminByID(db *gorm.DB, uid uint32) (*Admin, error) {
 	return a, err
 }
 
-	//	UPDATE ADMIN
-// func (a *Admin) UpdateAdmin(db *gorm.DB, uid uint32) (*User, error) {
-		
-// 	//	untuk hash password lagi
-// 	err := a.BeforeSave()
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	db = db.Debug().Model(&Admin{}).Where("id = ?", uid).Take(&Admin{}).UpdateColumns(
-// 		map[string]interface{}{
-// 			"email" 	:  	a.Email,
-// 			"password"  : 	a.Password,
-// 			"update_at" :	time.Now(),
-// 		},
-// 	)
-// 	if db.Error != nil {
-// 		return &Admin{}, db.Error
-// 	}
+//	 	UPDATE ADMIN
+func (a *Admin) UpdateAdmin(db *gorm.DB, uid uint32) (*Admin, error)  {
+	err := a.BeforeSave()
+	if err != nil {
+		log.Fatal(err)
+	}
+	db = db.Debug().Model(&Admin{}).Where("id = ?", uid).Take(&Admin{}).UpdateColumns(
+		map[string]interface{}{
+			"email" 	: a.Email,
+			"password" 	: a.Password,
+			"update_at" : time.Now(),
+		},
+	)
+	if db.Error != nil {
+		return &Admin{}, db.Error
+	}
 
-// 	//		Ini adalah tampilan admin yang diperbarui setelah di update
-// 	err = db.Debug().Model(&Admin{}).Where("id = ?", uid).Take(&a).Error
-// 	if err != nil {
-// 		return &Admin{}, err
-// 	}
-// 	return a, nil
-// }
+	//		tampilan admin setelah diupdate
+	err = db.Debug().Model(&Admin{}).Where("id = ?", uid).Take(&a).Error
+	if err != nil {
+		return &Admin{}, err
+	}
+	return a, nil
+}
 
 
 //		DELETE ADMINS
