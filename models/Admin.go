@@ -113,9 +113,9 @@ func (a *Admin) FindAdminByID(db *gorm.DB, uid uint32) (*Admin, error) {
 	return a, err
 }
 
-//		UPDATE ADMIN
+	//	UPDATE ADMIN
 // func (a *Admin) UpdateAdmin(db *gorm.DB, uid uint32) (*User, error) {
-	
+		
 // 	//	untuk hash password lagi
 // 	err := a.BeforeSave()
 // 	if err != nil {
@@ -132,7 +132,7 @@ func (a *Admin) FindAdminByID(db *gorm.DB, uid uint32) (*Admin, error) {
 // 		return &Admin{}, db.Error
 // 	}
 
-// 	//		Ini adalah tampilan admin yang diperbarui
+// 	//		Ini adalah tampilan admin yang diperbarui setelah di update
 // 	err = db.Debug().Model(&Admin{}).Where("id = ?", uid).Take(&a).Error
 // 	if err != nil {
 // 		return &Admin{}, err
