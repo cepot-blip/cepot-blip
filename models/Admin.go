@@ -7,7 +7,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/badoux/checkmail"
 	"github.com/jinzhu/gorm"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -59,9 +58,7 @@ func (a *Admin) Validate(action string) error {
 		if a.Password == "" {
 			return errors.New("required password anda")
 		}
-		if err := checkmail.ValidateFormat(a.Email); err != nil {
-			return errors.New("invalid email")
-		}
+
 		return nil
 	case "login":
 		if a.Password == "" {
@@ -70,9 +67,7 @@ func (a *Admin) Validate(action string) error {
 		if a.Email == "" {
 			return errors.New("require email")
 		}
-		if err := checkmail.ValidateFormat(a.Email); err != nil {
-			return errors.New("invalid email")
-		}
+
 		return nil
 
 	default:
@@ -81,9 +76,6 @@ func (a *Admin) Validate(action string) error {
 		}
 		if a.Password == "" {
 			return errors.New("require Password")
-		}
-		if err := checkmail.ValidateFormat(a.Email); err != nil {
-			return errors.New("invalid Email")
 		}
 		return nil
 	}
