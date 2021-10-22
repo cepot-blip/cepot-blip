@@ -21,7 +21,21 @@ func CreateToken(user_id uint32) (string, error) {
 	claims["exp"] = time.Now().Add(time.Hour * 1).Unix() //Token expayed sebelum 1 jam
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString([]byte(os.Getenv("API_SECRET")))
+}
 
+
+//		EXTRACT TOKEN
+func ExtractToken(r *http.Request) string {
+	keys := r.URL.Query()
+	token := keys.Get("token")
+	if token != "" {
+		return token
+	}
+	bearerToken := r.Header.Get("Authorization")
+	if len(strings.Split(bearerToken, " ")) == 2 {
+		return strings.Split(bearerToken, " ")[1]
+	}
+	return ""
 }
 
 //		CREATE TOKEN ADMINS
@@ -55,18 +69,29 @@ func TokenValid(r *http.Request) error {
 }
 
 
-//		EXTRACT TOKEN
-func ExtractToken(r *http.Request) string {
-	keys := r.URL.Query()
-	token := keys.Get("token")
-	if token != "" {
-		return token
+
+//		extract token admin
+func ExtractTokenIDAdmin(r *http.Request) (uint32, error) {
+
+	tokenString := ExtractToken(r)
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+		}
+		return []byte(os.Getenv("API_SECRET")), nil
+	})
+	if err != nil {
+		return 0, err
 	}
-	bearerToken := r.Header.Get("Authorization")
-	if len(strings.Split(bearerToken, " ")) == 2 {
-		return strings.Split(bearerToken, " ")[1]
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if ok && token.Valid {
+		uid, err := strconv.ParseUint(fmt.Sprintf("%.0f", claims["admin_id" ]), 10, 32)
+		if err != nil {
+			return 0, err
+		}
+		return uint32(uid), nil
 	}
-	return ""
+	return 0, nil
 }
 
 

@@ -68,6 +68,8 @@ func (server *Server) LoginAdmin(w http.ResponseWriter, r *http.Request) {
 	}
 	admins := models.Admin{}
 	err = json.Unmarshal(body, &admins)
+	admin := models.Admin{}
+	err = json.Unmarshal(body, &admin)
 	if err != nil {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
@@ -75,6 +77,8 @@ func (server *Server) LoginAdmin(w http.ResponseWriter, r *http.Request) {
 
 	admins.Prepare()
 	err = admins.Validate("login")
+	admin.Prepare()
+	err = admin.Validate("login")
 	if err != nil {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
@@ -103,4 +107,15 @@ func (server *Server) SignInAdmin(email, password string) (string, error) {
 		return "", err
 	}
 	return auth.CreateToken(admins.ID)
+	admin := models.Admin{}
+
+	err = server.DB.Debug().Model(models.Admin{}).Where("email = ?", email).Take(&admin).Error
+	if err != nil {
+		return "", err
+	}
+	err = models.VerifyPassword(admin.Password, password)
+	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
+		return "", err
+	}
+	return auth.CreateTokenAdmin(admin.ID)
 }

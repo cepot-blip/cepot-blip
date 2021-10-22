@@ -63,6 +63,23 @@ func (server *Server) ReadAllAdmin(w http.ResponseWriter, r *http.Request)  {
 }
 
 
+//		FIND ADMIN BY ID
+func (server *Server) FindAdmin(w http.ResponseWriter, r *http.Request)  {
+	vars := mux.Vars(r)
+	uid, err := strconv.ParseUint(vars["id"], 10, 32)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+	admin := models.Admin{}
+	adminGet, err := admin.FindAdminByID(server.DB, uint32(uid))
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+	responses.JSON(w, http.StatusOK, adminGet)
+}
+
 
 //		UPDATE ADMIN
 func (server *Server) UpdateAdmin(w http.ResponseWriter, r *http.Request)  {
@@ -84,7 +101,7 @@ func (server *Server) UpdateAdmin(w http.ResponseWriter, r *http.Request)  {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
 	}
-	tokenID, err := auth.ExtractTokenID(r)
+	tokenID, err := auth.ExtractTokenIDAdmin(r)
 	if err != nil {
 		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unautorized"))
 		return
@@ -121,7 +138,7 @@ func (server *Server)DeleteAdmin(w http.ResponseWriter, r *http.Request)  {
 		responses.ERROR(w, http.StatusBadRequest, err)
 		return			
 	}
-	tokenID, err := auth.ExtractTokenID(r)
+	tokenID, err := auth.ExtractTokenIDAdmin(r)
 	if err != nil {
 		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unautorized"))
 		return

@@ -10,10 +10,8 @@ func (s *Server) initializeRoutes() {
 	// 		Login Routes USER
 	s.Router.HandleFunc("/user_login", middlewares.SetMiddlewareJSON(s.Login)).Methods("POST")
 
-
-	//		LOGIN ROUTES ADMIN
+	// 		Login ADMIN
 	s.Router.HandleFunc("/admin_login", middlewares.SetMiddlewareJSON(s.LoginAdmin)).Methods("POST")
-
 
 	//		Users routess
 	s.Router.HandleFunc("/users_create", middlewares.SetMiddlewareJSON(s.CreateUser)).Methods("POST")

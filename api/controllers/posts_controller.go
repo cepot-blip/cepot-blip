@@ -151,7 +151,7 @@ func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 
 	postUpdate.ID = post.ID //		ini penting untuk memberi tahu model id posting yang akan diperbarui, bidang pembaruan lainnya diatur di atas
 
-	postUpdated, err := postUpdate.UpdateAPost(server.DB)
+	postUpdated, err := postUpdate.UpdatePost(server.DB)
 
 	if err != nil {
 		formattedError := formaterror.FormatError(err.Error())
@@ -194,7 +194,7 @@ func (server *Server) DeletePost(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
 		return
 	}
-	_, err = post.DeleteAPost(server.DB, pid, uid)
+	_, err = post.DeletePost(server.DB, pid, uid)
 	if err != nil {
 		responses.ERROR(w, http.StatusBadRequest, err)
 		return
