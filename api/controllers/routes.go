@@ -7,8 +7,11 @@ func (s *Server) initializeRoutes() {
 	// 		Home Routes
 	s.Router.HandleFunc("/", middlewares.SetMiddlewareJSON(s.Home)).Methods("GET")
 
-	// 		Login Routes
+	// 		Login Routes USER
 	s.Router.HandleFunc("/user_login", middlewares.SetMiddlewareJSON(s.Login)).Methods("POST")
+
+		// 		Login ADMIN
+		s.Router.HandleFunc("/admin_login", middlewares.SetMiddlewareJSON(s.LoginAdmin)).Methods("POST")
 
 	//		Users routess
 	s.Router.HandleFunc("/users_create", middlewares.SetMiddlewareJSON(s.CreateUser)).Methods("POST")
@@ -28,7 +31,7 @@ func (s *Server) initializeRoutes() {
 	//		ADMIN ROUTES
 	s.Router.HandleFunc("/admin_create", middlewares.SetMiddlewareJSON(s.CreateAdmin)).Methods("POST")
 	s.Router.HandleFunc("/admin_read", middlewares.SetMiddlewareJSON(s.ReadAllAdmin)).Methods("GET")
-	s.Router.HandleFunc("/admin_login/{id}", middlewares.SetMiddlewareJSON(s.LoginAdmin)).Methods("POST")
+	s.Router.HandleFunc("/admin_find/{id}", middlewares.SetMiddlewareJSON(s.FindAdmin)).Methods("POST")
 	s.Router.HandleFunc("/admin_update/{id}", middlewares.SetMiddlewareJSON(s.UpdateAdmin)).Methods("PUT")
 	s.Router.HandleFunc("/admin_delete/{id}", middlewares.SetMiddlewareJSON(s.DeleteAdmin)).Methods("DELETE")
 
