@@ -117,5 +117,5 @@ func (server *Server) SignInAdmin(email, password string) (string, error) {
 	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
 		return "", err
 	}
-	return auth.CreateTokenAdmin(admin.ID)
+	return auth.CreateTokenAdmins(admin.ID)
 }
