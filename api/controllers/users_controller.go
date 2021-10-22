@@ -48,7 +48,7 @@ func (server *Server) CreateUser(w http.ResponseWriter, r *http.Request) {
 }
 
 
-//		READ ALLrd USERS
+//		READ ALL USERS
 func (server *Server) GetUsers(w http.ResponseWriter, r *http.Request) {
 
 	user := models.User{}
@@ -62,7 +62,7 @@ func (server *Server) GetUsers(w http.ResponseWriter, r *http.Request) {
 }
 
 
-//		LOGIN USERS BY ID
+//		FIND USERS BY ID
 func (server *Server) GetUser(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
