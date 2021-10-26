@@ -68,8 +68,6 @@ func (server *Server) LoginAdmin(w http.ResponseWriter, r *http.Request) {
 	}
 	admins := models.Admin{}
 	err = json.Unmarshal(body, &admins)
-	admin := models.Admin{}
-	err = json.Unmarshal(body, &admin)
 	if err != nil {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
@@ -77,8 +75,6 @@ func (server *Server) LoginAdmin(w http.ResponseWriter, r *http.Request) {
 
 	admins.Prepare()
 	err = admins.Validate("login")
-	admin.Prepare()
-	err = admin.Validate("login")
 	if err != nil {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return

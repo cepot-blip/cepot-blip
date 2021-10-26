@@ -32,7 +32,13 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 		}
 	}
 
-	server.DB.Debug().AutoMigrate(&models.User{}, &models.Post{}, &models.Admin{}) //	DATABASE MIGRATION
+
+	//	DATABASE MIGRATION	
+	server.DB.Debug().AutoMigrate(
+		&models.User{}, 
+		&models.Post{}, 
+		&models.Admin{},
+		) 
 
 	server.Router = mux.NewRouter()
 

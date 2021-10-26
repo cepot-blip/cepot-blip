@@ -138,15 +138,6 @@ func (server *Server)DeleteAdmin(w http.ResponseWriter, r *http.Request)  {
 		responses.ERROR(w, http.StatusBadRequest, err)
 		return			
 	}
-	tokenID, err := auth.ExtractTokenIDAdmin(r)
-	if err != nil {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unautorized"))
-		return
-	}
-	if tokenID != 0 && tokenID != uint32(uid) {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New(http.StatusText(http.StatusUnauthorized)))
-		return
-	}
 	_, err = admin.DeleteAdmin(server.DB, uint32(uid))
 	if err != nil {
 		responses.ERROR(w, http.StatusInternalServerError, err)
