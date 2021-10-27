@@ -41,6 +41,8 @@ func (server *Server) Login(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, token)
 }
 
+
+//		USER SIGNIN
 func (server *Server) SignIn(email, password string) (string, error) {
 
 	var err error
@@ -103,15 +105,14 @@ func (server *Server) SignInAdmin(email, password string) (string, error) {
 		return "", err
 	}
 	return auth.CreateToken(admins.ID)
-	admin := models.Admin{}
 
-	err = server.DB.Debug().Model(models.Admin{}).Where("email = ?", email).Take(&admin).Error
+	err = server.DB.Debug().Model(models.Admin{}).Where("email = ?", email).Take(&admins).Error
 	if err != nil {
 		return "", err
 	}
-	err = models.VerifyPassword(admin.Password, password)
+	err = models.VerifyPassword(admins.Password, password)
 	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
 		return "", err
 	}
-	return auth.CreateTokenAdmins(admin.ID)
+	return auth.CreateTokenAdmins(admins.ID)
 }
