@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/cepot-blip/fullstack/models"
+	"github.com/cepot-blip/fullstack/api/models"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 
@@ -32,13 +32,13 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 		}
 	}
 
-
-	//	DATABASE MIGRATION	
+	//	DATABASE MIGRATION
 	server.DB.Debug().AutoMigrate(
-		&models.User{}, 
-		&models.Post{}, 
+		&models.User{},
+		&models.Post{},
 		&models.Admin{},
-		) 
+		&models.Bank{},
+	)
 
 	server.Router = mux.NewRouter()
 

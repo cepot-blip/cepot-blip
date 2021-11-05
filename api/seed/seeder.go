@@ -3,7 +3,7 @@ package seed
 import (
 	"log"
 
-	"github.com/cepot-blip/fullstack/models"
+	"github.com/cepot-blip/fullstack/api/models"
 	"github.com/jinzhu/gorm"
 )
 
@@ -31,16 +31,15 @@ var posts = []models.Post{
 	},
 }
 
-
 func Load(db *gorm.DB) {
 
-	err := db.Debug().DropTableIfExists(&models.Post{}, &models.User{}).Error
+	err := db.Debug().DropTableIfExists(&models.Post{}, &models.User{}, &models.Bank{}).Error
 	if err != nil {
-		log.Fatalf("cannot drop table: %v", err)
+		log.Fatalf("gagal drop table: %v", err)
 	}
-	err = db.Debug().AutoMigrate(&models.User{}, &models.Post{}, &models.Admin{}).Error
+	err = db.Debug().AutoMigrate(&models.User{}, &models.Post{}, &models.Admin{}, &models.Bank{}).Error
 	if err != nil {
-		log.Fatalf("cannot migrate table: %v", err)
+		log.Fatalf("gagal migrasi table: %v", err)
 	}
 
 	err = db.Debug().Model(&models.Post{}).AddForeignKey("author_id", "users(id)", "cascade", "cascade").Error
@@ -51,15 +50,14 @@ func Load(db *gorm.DB) {
 	for i, _ := range users {
 		err = db.Debug().Model(&models.User{}).Create(&users[i]).Error
 		if err != nil {
-			log.Fatalf("cannot seed users table: %v", err)
+			log.Fatalf("gagal membuat seed table users: %v", err)
 		}
 		posts[i].AuthorID = users[i].ID
 
 		err = db.Debug().Model(&models.Post{}).Create(&posts[i]).Error
 		if err != nil {
-			log.Fatalf("cannot seed posts table: %v", err)
+			log.Fatalf("gagal membuat seed table post: %v", err)
 		}
 	}
 
 }
-

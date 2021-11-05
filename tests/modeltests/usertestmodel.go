@@ -4,7 +4,7 @@ import (
 	"log"
 	"testing"
 
-	"github.com/cepot-blip/fullstack/models"
+	"github.com/cepot-blip/fullstack/api/models"
 	_ "github.com/jinzhu/gorm/dialects/mysql" //mysql driver
 	"gopkg.in/go-playground/assert.v1"
 )
@@ -60,7 +60,7 @@ func TestGetUserByID(t *testing.T) {
 
 	user, err := seedOneUser()
 	if err != nil {
-		log.Fatalf("cannot seed users table: %v", err)
+		log.Fatalf("gagal membuat seed user: %v", err)
 	}
 	foundUser, err := userInstance.FindUserByID(server.DB, user.ID)
 	if err != nil {
@@ -81,7 +81,7 @@ func TestUpdateAUser(t *testing.T) {
 
 	user, err := seedOneUser()
 	if err != nil {
-		log.Fatalf("Cannot seed user: %v\n", err)
+		log.Fatalf("gagal membuat seed user: %v\n", err)
 	}
 
 	userUpdate := models.User{

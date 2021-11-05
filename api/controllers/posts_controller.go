@@ -8,10 +8,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/cepot-blip/fullstack/api/auth"
+	"github.com/cepot-blip/fullstack/api/models"
 	"github.com/cepot-blip/fullstack/api/responses"
 	"github.com/cepot-blip/fullstack/api/utils/formaterror"
-	"github.com/cepot-blip/fullstack/models"
 	"github.com/gorilla/mux"
 )
 
@@ -35,15 +34,15 @@ func (server *Server) CreatePost(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
 	}
-	uid, err := auth.ExtractTokenID(r)
-	if err != nil {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
-		return
-	}
-	if uid != post.AuthorID {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New(http.StatusText(http.StatusUnauthorized)))
-		return
-	}
+	// uid, err := auth.ExtractTokenID(r)
+	// if err != nil {
+	// 	responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+	// 	return
+	// }
+	// if uid != post.AuthorID {
+	// 	responses.ERROR(w, http.StatusUnauthorized, errors.New(http.StatusText(http.StatusUnauthorized)))
+	// 	return
+	// }
 	postCreated, err := post.SavePost(server.DB)
 	if err != nil {
 		formattedError := formaterror.FormatError(err.Error())
@@ -53,7 +52,6 @@ func (server *Server) CreatePost(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Lacation", fmt.Sprintf("%s%s/%d", r.Host, r.URL.Path, postCreated.ID))
 	responses.JSON(w, http.StatusCreated, postCreated)
 }
-
 
 //		READ ALL POSTINGAN
 func (server *Server) GetPosts(w http.ResponseWriter, r *http.Request) {
@@ -67,7 +65,6 @@ func (server *Server) GetPosts(w http.ResponseWriter, r *http.Request) {
 	}
 	responses.JSON(w, http.StatusOK, posts)
 }
-
 
 //		FIND POSTINGAN BY ID
 func (server *Server) GetPost(w http.ResponseWriter, r *http.Request) {
@@ -88,7 +85,6 @@ func (server *Server) GetPost(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, postReceived)
 }
 
-
 //		UPDATE POSTINGAN
 func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 
@@ -102,11 +98,11 @@ func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//		Periksa apakah token auth valid dan dapatkan id pengguna darinya
-	uid, err := auth.ExtractTokenID(r)
-	if err != nil {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
-		return
-	}
+	// uid, err := auth.ExtractTokenID(r)
+	// if err != nil {
+	// 	responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+	// 	return
+	// }
 
 	// 		Periksa apakah posnya ada
 	post := models.Post{}
@@ -117,10 +113,10 @@ func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// 		Jika pengguna mencoba memperbarui kiriman yang bukan miliknya
-	if uid != post.AuthorID {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
-		return
-	}
+	// if uid != post.AuthorID {
+	// 	responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+	// 	return
+	// }
 	// 		Baca data yang diposting
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -137,10 +133,10 @@ func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//		Periksa juga apakah id pengguna permintaan sama dengan yang didapat dari token
-	if uid != postUpdate.AuthorID {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
-		return
-	}
+	// if uid != postUpdate.AuthorID {
+	// 	responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+	// 	return
+	// }
 
 	postUpdate.Prepare()
 	err = postUpdate.Validate()
@@ -161,7 +157,6 @@ func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, postUpdated)
 }
 
-
 //		DELETE POSTINGAN
 func (server *Server) DeletePost(w http.ResponseWriter, r *http.Request) {
 
@@ -175,11 +170,11 @@ func (server *Server) DeletePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Apakah pengguna ini diautentikasi?
-	uid, err := auth.ExtractTokenID(r)
-	if err != nil {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
-		return
-	}
+	// uid, err := auth.ExtractTokenID(r)
+	// if err != nil {
+	// 	responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+	// 	return
+	// }
 
 	// Periksa apakah posnya ada
 	post := models.Post{}
@@ -190,15 +185,15 @@ func (server *Server) DeletePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Apakah pengguna yang diautentikasi, pemilik postingan ini?
-	if uid != post.AuthorID {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
-		return
-	}
-	_, err = post.DeletePost(server.DB, pid, uid)
-	if err != nil {
-		responses.ERROR(w, http.StatusBadRequest, err)
-		return
-	}
+	// if uid != post.AuthorID {
+	// 	responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+	// 	return
+	// }
+	// _, err = post.DeletePost(server.DB, pid, uid)
+	// if err != nil {
+	// 	responses.ERROR(w, http.StatusBadRequest, err)
+	// 	return
+	// }
 	w.Header().Set("Entity", fmt.Sprintf("%d", pid))
 	responses.JSON(w, http.StatusNoContent, "")
 }

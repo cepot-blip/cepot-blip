@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/cepot-blip/fullstack/api/controllers"
-	"github.com/cepot-blip/fullstack/models"
+	"github.com/cepot-blip/fullstack/api/models"
 	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"
 )
@@ -26,7 +26,6 @@ func TestMain(m *testing.M) {
 
 	os.Exit(m.Run())
 }
-
 
 //			DRIVER MENGGUNAKAN MYSQL
 func Database() {

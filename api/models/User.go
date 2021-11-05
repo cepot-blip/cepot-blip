@@ -22,12 +22,10 @@ type User struct {
 	UpdatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
 }
 
-
 //		HASH PASSWORD
 func Hash(password string) ([]byte, error) {
 	return bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 }
-
 
 //		COMPARE PASSWORD
 func VerifyPassword(hashedPassword, password string) error {
@@ -51,7 +49,6 @@ func (u *User) Prepare() {
 	u.UpdatedAt = time.Now()
 }
 
-
 //		VALIDASI
 func (u *User) Validate(action string) error {
 	switch strings.ToLower(action) {
@@ -69,7 +66,7 @@ func (u *User) Validate(action string) error {
 			return errors.New("invalid Email")
 		}
 		return nil
-		
+
 	case "login":
 		if u.Password == "" {
 			return errors.New("required Password")
@@ -99,18 +96,16 @@ func (u *User) Validate(action string) error {
 	}
 }
 
-
 //		CREATE USERS
 func (u *User) SaveUser(db *gorm.DB) (*User, error) {
 
-	var _,err  error
+	var _, err error
 	err = db.Debug().Create(&u).Error
 	if err != nil {
 		return &User{}, err
 	}
 	return u, nil
 }
-
 
 //		READ ALL USERS
 func (u *User) FindAllUsers(db *gorm.DB) (*[]User, error) {
@@ -123,10 +118,9 @@ func (u *User) FindAllUsers(db *gorm.DB) (*[]User, error) {
 	return &users, err
 }
 
-
 //		LOGIN USERS BY ID
 func (u *User) FindUserByID(db *gorm.DB, uid uint32) (*User, error) {
-	var _,err  error
+	var _, err error
 	err = db.Debug().Model([]User{}).Where("id = ?", uid).Take(&u).Error
 	if err != nil {
 		return &User{}, err
@@ -137,7 +131,6 @@ func (u *User) FindUserByID(db *gorm.DB, uid uint32) (*User, error) {
 	return u, err
 }
 
-
 //		UPDATE USERS
 func (u *User) UpdateAUser(db *gorm.DB, uid uint32) (*User, error) {
 
@@ -146,7 +139,7 @@ func (u *User) UpdateAUser(db *gorm.DB, uid uint32) (*User, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	db = db.Debug().Model(&User{}).Where("id = ?", uid).Take(&User{}).UpdateColumns(
+	db = db.Debug().Model(&User{}).Take(&User{}).UpdateColumns(
 		map[string]interface{}{
 			"password":  u.Password,
 			"nickname":  u.Nickname,
@@ -157,15 +150,14 @@ func (u *User) UpdateAUser(db *gorm.DB, uid uint32) (*User, error) {
 	if db.Error != nil {
 		return &User{}, db.Error
 	}
-	
+
 	//   Ini adalah tampilan users yang diperbarui
-	err = db.Debug().Model(&User{}).Where("id = ?", uid).Take(&u).Error
+	err = db.Debug().Model(&User{}).Take(&u).Error
 	if err != nil {
 		return &User{}, err
 	}
 	return u, nil
 }
-
 
 //		DELETE USERS
 func (u *User) DeleteAUser(db *gorm.DB, uid uint32) (int64, error) {

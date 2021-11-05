@@ -42,6 +42,7 @@ func (p *Post) Validate() error {
 	return nil
 }
 
+//		CREATE POSTINGAN
 func (p *Post) SavePost(db *gorm.DB) (*Post, error) {
 	var err error
 	err = db.Debug().Model(&Post{}).Create(&p).Error
@@ -57,6 +58,7 @@ func (p *Post) SavePost(db *gorm.DB) (*Post, error) {
 	return p, nil
 }
 
+//		READ ALL POSTINGAN
 func (p *Post) FindAllPosts(db *gorm.DB) (*[]Post, error) {
 	var err error
 	posts := []Post{}
@@ -65,7 +67,7 @@ func (p *Post) FindAllPosts(db *gorm.DB) (*[]Post, error) {
 		return &[]Post{}, err
 	}
 	if len(posts) > 0 {
-		for i  := range posts {
+		for i := range posts {
 			err := db.Debug().Model(&User{}).Where("id = ?", posts[i].AuthorID).Take(&posts[i].Author).Error
 			if err != nil {
 				return &[]Post{}, err
@@ -75,6 +77,7 @@ func (p *Post) FindAllPosts(db *gorm.DB) (*[]Post, error) {
 	return &posts, nil
 }
 
+//		FIND POSTINGAN BY ID
 func (p *Post) FindPostByID(db *gorm.DB, pid uint64) (*Post, error) {
 	var err error
 	err = db.Debug().Model(&Post{}).Where("id = ?", pid).Take(&p).Error
@@ -90,6 +93,7 @@ func (p *Post) FindPostByID(db *gorm.DB, pid uint64) (*Post, error) {
 	return p, nil
 }
 
+//		UPDATE POSTINGAN BY ID
 func (p *Post) UpdatePost(db *gorm.DB) (*Post, error) {
 
 	var err error
@@ -107,6 +111,7 @@ func (p *Post) UpdatePost(db *gorm.DB) (*Post, error) {
 	return p, nil
 }
 
+//		DELETE POSTINGAN BY ID
 func (p *Post) DeletePost(db *gorm.DB, pid uint64, uid uint32) (int64, error) {
 
 	db = db.Debug().Model(&Post{}).Where("id = ? and author_id = ?", pid, uid).Take(&Post{}).Delete(&Post{})
