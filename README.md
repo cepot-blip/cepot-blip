@@ -66,9 +66,7 @@ _folder dibawah ini ada di dalam semua folder api_
 
 _Dan tampilan nya akan seperti ini jika sudah membuat folder semua itu._
 
-<img src="https://photos.picsum/seed/30/600">
-
-<!-- ![sss.PNG](FULL%20STACK%20REST%20API%20IN%20GO%20PRO%20CODING%2019edfa96640c4ac6ba7011abe5b66111/sss.png) -->
+![sss.PNG](FULL%20STACK%20REST%20API%20IN%20GO%20PRO%20CODING%2019edfa96640c4ac6ba7011abe5b66111/sss.png)
 
 > selanjut nya kita buka file **.env** kita untuk mengedit isi dari file tersebut dengan membuat seperti berikut .
 
