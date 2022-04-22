@@ -64,6 +64,7 @@ _folder dibawah ini ada di dalam semua folder api_
 - utils
 
 \*Dan didalam folder api membuat file bernama **server.go\***
+
 \*Dan DILUAR folder api membuat file bernama **main.go untuk runing server utama kita\***
 
 _Dan tampilan nya akan seperti ini jika sudah membuat folder semua itu._
