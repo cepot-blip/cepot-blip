@@ -7,10 +7,10 @@ func (s *Server) initializeRoutes() {
 	// 		Home Routes
 	s.Router.HandleFunc("/", middlewares.SetMiddlewareJSON(s.Home)).Methods("GET")
 
-	// 		Login Routes USER
+			// Login Routes USER
 	// s.Router.HandleFunc("/user_login", middlewares.SetMiddlewareJSON(s.Login)).Methods("POST")
 
-	// 		Login ADMIN
+			// Login ADMIN
 	// s.Router.HandleFunc("/admin_login", middlewares.SetMiddlewareJSON(s.LoginAdmin)).Methods("POST")
 
 	//		Users routess
@@ -34,11 +34,5 @@ func (s *Server) initializeRoutes() {
 	// s.Router.HandleFunc("/admin_update/{id}", middlewares.SetMiddlewareJSON(s.UpdateAdmin)).Methods("PUT")
 	// s.Router.HandleFunc("/admin_delete/{id}", middlewares.SetMiddlewareJSON(s.DeleteAdmin)).Methods("DELETE")
 
-	//		BANK ROUTES
-	s.Router.HandleFunc("/bank_create", middlewares.SetMiddlewareJSON(s.CreateBank)).Methods("POST")
-	s.Router.HandleFunc("/bank_read", middlewares.SetMiddlewareJSON(s.ReadAllBank)).Methods("GET")
-	s.Router.HandleFunc("/bank_find/{id}", middlewares.SetMiddlewareJSON(s.FindBankByID)).Methods("POST")
-	s.Router.HandleFunc("/bank_update/{id}", middlewares.SetMiddlewareJSON(s.UpdateBank)).Methods("PUT")
-	// s.Router.HandleFunc("/bank_delete/{id}", middlewares.SetMiddlewareJSON(s.DeleteAdmin)).Methods("DELETE")
 
 }

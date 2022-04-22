@@ -1,16 +1,18 @@
 package controllers
 
-// "encoding/json"
-// "io/ioutil"
-// "net/http"
+// import (
+// 	"encoding/json"
+// 	"io/ioutil"
+// 	"net/http"
 
-// "github.com/cepot-blip/fullstack/api/auth"
-// "github.com/cepot-blip/fullstack/api/models"
-// "github.com/cepot-blip/fullstack/api/responses"
-// "github.com/cepot-blip/fullstack/api/utils/formaterror"
-// "golang.org/x/crypto/bcrypt"
+// 	"github.com/cepot-blip/fullstack/api/auth"
+// 	"github.com/cepot-blip/fullstack/api/models"
+// 	"github.com/cepot-blip/fullstack/api/responses"
+// 	"github.com/cepot-blip/fullstack/api/utils/formaterror"
+// 	"golang.org/x/crypto/bcrypt"
+// )
 
-//		USER LOGIN
+// // USER LOGIN
 // func (server *Server) Login(w http.ResponseWriter, r *http.Request) {
 // 	body, err := ioutil.ReadAll(r.Body)
 // 	if err != nil {
@@ -39,7 +41,7 @@ package controllers
 // 	responses.JSON(w, http.StatusOK, token)
 // }
 
-//		USER SIGNIN
+// 		// USER SIGNIN
 // func (server *Server) SignIn(email, password string) (string, error) {
 
 // 	var err error
@@ -54,10 +56,10 @@ package controllers
 // 	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
 // 		return "", err
 // 	}
-// 	// return auth.CreateToken(user.ID)
+// 	return auth.CreateToken(user.ID)
 // }
 
-//		ADMIN LOGIN
+// 		// ADMIN LOGIN
 // func (server *Server) LoginAdmin(w http.ResponseWriter, r *http.Request) {
 // 	body, err := ioutil.ReadAll(r.Body)
 // 	if err != nil {

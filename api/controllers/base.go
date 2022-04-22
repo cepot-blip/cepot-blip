@@ -37,7 +37,6 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 		&models.User{},
 		&models.Post{},
 		&models.Admin{},
-		&models.Bank{},
 	)
 
 	server.Router = mux.NewRouter()
@@ -46,6 +45,6 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 }
 
 func (server *Server) Run(addr string) {
-	fmt.Println("Listening to port 8080")
+	fmt.Println("Listening to port 9000")
 	log.Fatal(http.ListenAndServe(addr, server.Router))
 }
