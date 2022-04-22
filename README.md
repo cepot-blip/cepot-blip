@@ -52,7 +52,7 @@ go get github.com/jinzhu/gorm/dialects/mysql"
 
 - api
 
-*folder dibawah ini ada di dalam semua folder api*
+_folder dibawah ini ada di dalam semua folder api_
 
 - auth
 - controllers
@@ -62,21 +62,21 @@ go get github.com/jinzhu/gorm/dialects/mysql"
 - seed
 - utils
 
-*Dan didalam folder api membuat file bernama **server.go***
+\*Dan didalam folder api membuat file bernama **server.go\***
 
-*Dan tampilan nya akan seperti ini jika sudah membuat folder semua itu.*
+_Dan tampilan nya akan seperti ini jika sudah membuat folder semua itu._
 
-![sss.PNG](FULL%20STACK%20REST%20API%20IN%20GO%20PRO%20CODING%2019edfa96640c4ac6ba7011abe5b66111/sss.png)
+<img src="FULL%20STACK%20REST%20API%20IN%20GO%20PRO%20CODING%2019edfa96640c4ac6ba7011abe5b66111/sss.png">
+
+<!-- ![sss.PNG](FULL%20STACK%20REST%20API%20IN%20GO%20PRO%20CODING%2019edfa96640c4ac6ba7011abe5b66111/sss.png) -->
 
 > selanjut nya kita buka file **.env** kita untuk mengedit isi dari file tersebut dengan membuat seperti berikut .
-> 
 
 ![env.PNG](FULL%20STACK%20REST%20API%20IN%20GO%20PRO%20CODING%2019edfa96640c4ac6ba7011abe5b66111/env.png)
 
 Berhubunga kita menggunakan mysql sebagai DB nya kita membutuhkan DB_USER mysql dan DB_PASSWORD kita dan untuk DB_NAME itu kita membuat nya di dalam databases mysql kita bernama server_golang sebagai contoh, dan utuk db_port karena saya menggunakan window jadi port nya **3306** dan untuk pengguna mac os port nya **8889, jangan lupa untuk start mamp agar terconect ke server mysql nya, silahkan di download apk mamp nya di google banyak.**
 
-> SELANJUT NYA **kita akan membuat file di dalam folder *controllers* bernama *base.go dimana sebagai controller untuk file server.go kita***
-> 
+> SELANJUT NYA **kita akan membuat file di dalam folder _controllers_ bernama _base.go dimana sebagai controller untuk file server.go kita_**
 
 ```go
 package controllers
@@ -123,8 +123,7 @@ func (server *Server) Run(addr string) {
 }
 ```
 
-> ***SELANJUT NYA KITA AKAN MEMBUAT TOKEN FILE DIDALAM FOLDER AUTH bernama token*.go untuk Membuat token pada users untuk validasi login**
-> 
+> **_SELANJUT NYA KITA AKAN MEMBUAT TOKEN FILE DIDALAM FOLDER AUTH bernama token_.go untuk Membuat token pada users untuk validasi login**
 
 ```go
 package auth
@@ -201,8 +200,7 @@ func Pretty(data interface{}) {
 }
 ```
 
-> ***SELANJUT NYA KITA AKAN MEMBUAT FILE DIDALAM FOLDER RESPONSES bernama handlejson*.go untuk Menjadikan json,**
-> 
+> **_SELANJUT NYA KITA AKAN MEMBUAT FILE DIDALAM FOLDER RESPONSES bernama handlejson_.go untuk Menjadikan json,**
 
 ```go
 package responses
@@ -234,8 +232,7 @@ func ERROR(w http.ResponseWriter, statusCode int, err error) {
 }
 ```
 
-> ***SELANJUT NYA KITA AKAN MEMBUAT FOLDER DIDALAM FOLDER UTILS bernama FORMATERROR  didalam FOLDER FORMATERROR buat file bernama handleerror*.go untuk Menghandle apa bila terjadi error,**
-> 
+> **_SELANJUT NYA KITA AKAN MEMBUAT FOLDER DIDALAM FOLDER UTILS bernama FORMATERROR didalam FOLDER FORMATERROR buat file bernama handleerror_.go untuk Menghandle apa bila terjadi error,**
 
 ```go
 package formaterror
@@ -265,8 +262,7 @@ func FormatError(err string) error {
 }
 ```
 
-> ***SELANJUT NYA KITA AKAN MEMBUAT FILE DIDALAM FOLDER MODEL bernama Users*.go untuk membuat Model Users Apa saja yang di butuhkan,**
-> 
+> **_SELANJUT NYA KITA AKAN MEMBUAT FILE DIDALAM FOLDER MODEL bernama Users_.go untuk membuat Model Users Apa saja yang di butuhkan,**
 
 ```go
 package models
@@ -442,8 +438,7 @@ func (u *User) DeleteAUser(db *gorm.DB, uid uint32) (int64, error) {
 }
 ```
 
-> ***SELANJUT NYA KITA AKAN MEMBUAT FILE DIDALAM FOLDER CONTROLLERS bernama users_controllers*.go untuk Mengcontroller Model Users yang sudah kita buat tadi,**
-> 
+> **_SELANJUT NYA KITA AKAN MEMBUAT FILE DIDALAM FOLDER CONTROLLERS bernama users_controllers_.go untuk Mengcontroller Model Users yang sudah kita buat tadi,**
 
 ```go
 package controllers
@@ -601,8 +596,7 @@ func (server *Server) DeleteUser(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-> ***SELANJUT NYA KITA AKAN MEMBUAT FILE DI DALAM FOLDER SEED bernama* seed.go untuk mengkonekan file server.go agar terkonek ke DB atau untuk ngeload data dari databases ketika sudah dibuatkan model**
-> 
+> **_SELANJUT NYA KITA AKAN MEMBUAT FILE DI DALAM FOLDER SEED bernama_ seed.go untuk mengkonekan file server.go agar terkonek ke DB atau untuk ngeload data dari databases ketika sudah dibuatkan model**
 
 ```go
 package seed
@@ -670,8 +664,7 @@ func Load(db *gorm.DB) {
 }
 ```
 
-> ***SELANJUT NYA KITA AKAN MENGEDIT FILE*** **server.go untuk mengkonekan file .env kita ke server.go**
-> 
+> **_SELANJUT NYA KITA AKAN MENGEDIT FILE_** **server.go untuk mengkonekan file .env kita ke server.go**
 
 ```go
 package api
@@ -707,8 +700,7 @@ func Run() {
 }
 ```
 
-> ***SELANJUT NYA KITA AKAN MEMBUAT FILE* middlewares.go di dalam folder MIDDLEWARES untuk kepetingan routing pada END POINT,**
-> 
+> **_SELANJUT NYA KITA AKAN MEMBUAT FILE_ middlewares.go di dalam folder MIDDLEWARES untuk kepetingan routing pada END POINT,**
 
 ```go
 package middlewares
@@ -740,8 +732,7 @@ func SetMiddlewareAuthentication(next http.HandlerFunc) http.HandlerFunc {
 }
 ```
 
-> ***SELANJUT NYA KITA AKAN MEMBUAT FILE*** **routes.go untuk mebuat EndPoint dan memanggil model yang sudah kita buat ,**
-> 
+> **_SELANJUT NYA KITA AKAN MEMBUAT FILE_** **routes.go untuk mebuat EndPoint dan memanggil model yang sudah kita buat ,**
 
 ```go
 package controllers
@@ -764,8 +755,7 @@ func (s *Server) initializeRoutes() {
 }
 ```
 
-> ***SELANJUT LANGKAH TERAKHIR KITA AKAN MENGEDIT FILE*** main**.go untuk memanggil folder api kita untuk meruning struktur foldeer yang sudah kita buat,**
-> 
+> **_SELANJUT LANGKAH TERAKHIR KITA AKAN MENGEDIT FILE_** main**.go untuk memanggil folder api kita untuk meruning struktur foldeer yang sudah kita buat,**
 
 ```go
 package main
@@ -777,9 +767,9 @@ func main() {
 }
 ```
 
-# DAN UNTUK MERUNING  SERVER KITA DI TERMINAL SILAHKAN KETIK SYNTAX BERIKUT,
+# DAN UNTUK MERUNING SERVER KITA DI TERMINAL SILAHKAN KETIK SYNTAX BERIKUT,
 
-- ***nodemon --exec go run *.go -signal SIGTERM***
+- **_nodemon --exec go run _.go -signal SIGTERM\***
 
 **atau bisa juga dengan menjalankan file utama kita yatu**
 
