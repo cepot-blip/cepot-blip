@@ -763,6 +763,7 @@ func main() {
 # DAN UNTUK MERUNING SERVER KITA DI TERMINAL SILAHKAN KETIK SYNTAX BERIKUT,
 
 - **_nodemon --exec go run _.go -signal SIGTERM\***
+
 // khusus pengguna nodemone lakukan syntax seperti diatas .
 
 
