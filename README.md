@@ -17,14 +17,14 @@ go mod init github.com/cepot-blip/fullstack
 
 ```
 
-1. Instalasi beberapa dependensi kebutuahn project kita, disini saya menggunakan **ORM gorm**
+3. Instalasi beberapa dependensi kebutuahn project kita, disini saya menggunakan **ORM gorm**
 
 ```go
 go get github.com/jinzhu/gorm
 ```
 
-1. Install bcrypt dengan melakukan syntax berikut, untuk melakukan penghashan pada password
-2. Install Gorila mux untuk Router nya syntax sebagai berikut
+4. Install bcrypt dengan melakukan syntax berikut, untuk melakukan penghashan pada password
+5. Install Gorila mux untuk Router nya syntax sebagai berikut
 
 ```go
 go get github.com/gorilla/mux
@@ -34,14 +34,14 @@ go get github.com/gorilla/mux
 go get golang.org/x/crypto/bcrypt
 ```
 
-1. Install JWT atau Json Web Token untuk keperluan login pada user atau lainnya sbt .
+6. Install JWT atau Json Web Token untuk keperluan login pada user atau lainnya sbt .
 
 ```go
 go get github.com/dgrijalva/jwt-go
 
 ```
 
-1. Install Databases, karena disini saya menggunakan Databases Mysql untuk keperluan Project saya dan sebagai berikut syntax ny
+7. Install Databases, karena disini saya menggunakan Databases Mysql untuk keperluan Project saya dan sebagai berikut syntax ny
 
 ```go
 go get github.com/jinzhu/gorm/dialects/mysql"
