@@ -71,7 +71,7 @@ _Dan tampilan nya akan seperti ini jika sudah membuat folder semua itu._
 
 
 
-> \*selanjut nya kita buka file **.env** kita untuk mengedit isi dari file tersebut dengan membuat seperti berikut.\**
+> **selanjut nya kita buka file **.env** kita untuk mengedit isi dari file tersebut dengan membuat seperti berikut.**
 > 
 ![env](https://user-images.githubusercontent.com/85933775/164713812-9541f888-0321-42de-bfe8-5a1ad1a961f7.PNG)
 
