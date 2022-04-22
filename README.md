@@ -65,7 +65,10 @@ _folder dibawah ini ada di dalam semua folder api_
 \*Dan didalam folder api membuat file bernama **server.go\***
 
 _Dan tampilan nya akan seperti ini jika sudah membuat folder semua itu._
+
+
 ![sss](https://user-images.githubusercontent.com/85933775/164716908-399f4c1e-71b0-455d-ba9a-ef383bc93721.PNG)
+
 
 
 > selanjut nya kita buka file **.env** kita untuk mengedit isi dari file tersebut dengan membuat seperti berikut .
