@@ -2,7 +2,7 @@
 
 ---
 
-**LANKAH PERTAMA UNTUK MEMBUAT REST FULL API DENGAN GOLANG YAITU,**
+**LANGKAH PERTAMA UNTUK MEMBUAT REST FULL API DENGAN GOLANG YAITU,**
 
 1. Membuat folder project bernama **Fullstack**
 2. Inisialisai Poroject dengan cara melakukan syntax berikut .
