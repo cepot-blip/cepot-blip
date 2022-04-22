@@ -81,6 +81,13 @@ _Dan tampilan nya akan seperti ini jika sudah membuat folder semua itu._
 
 Berhubunga kita menggunakan mysql sebagai DB nya kita membutuhkan DB_USER mysql dan DB_PASSWORD kita dan untuk DB_NAME itu kita membuat nya di dalam databases mysql kita bernama server_golang sebagai contoh, dan utuk db_port karena saya menggunakan window jadi port nya **3306** dan untuk pengguna mac os port nya **8889, jangan lupa untuk start mamp agar terconect ke server mysql nya, silahkan di download apk mamp nya di google banyak.**
 
+
+**CONTOH MAMP YANG SAYA GUNAKAN**
+
+
+![mamp](https://user-images.githubusercontent.com/85933775/164772407-fdf521a5-ffb8-4c54-bbb7-393dea7c38af.PNG)
+
+
 > SELANJUT NYA **kita akan membuat file di dalam folder _controllers_ bernama _base.go dimana sebagai controller untuk file server.go kita_**
 
 ```go
