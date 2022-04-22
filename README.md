@@ -65,12 +65,12 @@ _folder dibawah ini ada di dalam semua folder api_
 \*Dan didalam folder api membuat file bernama **server.go\***
 
 _Dan tampilan nya akan seperti ini jika sudah membuat folder semua itu._
+![sss](https://user-images.githubusercontent.com/85933775/164713782-ab964e0d-7809-4640-8386-3879d8f3ed4c.PNG)
 
-![sss.PNG](FULL%20STACK%20REST%20API%20IN%20GO%20PRO%20CODING%2019edfa96640c4ac6ba7011abe5b66111/sss.png)
 
 > selanjut nya kita buka file **.env** kita untuk mengedit isi dari file tersebut dengan membuat seperti berikut .
+![env](https://user-images.githubusercontent.com/85933775/164713812-9541f888-0321-42de-bfe8-5a1ad1a961f7.PNG)
 
-![env.PNG](FULL%20STACK%20REST%20API%20IN%20GO%20PRO%20CODING%2019edfa96640c4ac6ba7011abe5b66111/env.png)
 
 Berhubunga kita menggunakan mysql sebagai DB nya kita membutuhkan DB_USER mysql dan DB_PASSWORD kita dan untuk DB_NAME itu kita membuat nya di dalam databases mysql kita bernama server_golang sebagai contoh, dan utuk db_port karena saya menggunakan window jadi port nya **3306** dan untuk pengguna mac os port nya **8889, jangan lupa untuk start mamp agar terconect ke server mysql nya, silahkan di download apk mamp nya di google banyak.**
 
