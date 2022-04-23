@@ -24,15 +24,19 @@ go get github.com/jinzhu/gorm
 ```
 
 4. Install bcrypt dengan melakukan syntax berikut, untuk melakukan penghashan pada password
+
+
+```go
+go get golang.org/x/crypto/bcrypt
+```
+
 5. Install Gorila mux untuk Router nya syntax sebagai berikut
+
 
 ```go
 go get github.com/gorilla/mux
 ```
 
-```go
-go get golang.org/x/crypto/bcrypt
-```
 
 6. Install JWT atau Json Web Token untuk keperluan login pada user atau lainnya sbt .
 
