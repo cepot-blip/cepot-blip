@@ -45,6 +45,12 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 }
 
 func (server *Server) Run(addr string) {
-	fmt.Println("Listening to port 9000")
+	fmt.Println(`
+	===============================
+
+	L I S T E N I N G  P O R T 9000
+
+	===============================
+	`)
 	log.Fatal(http.ListenAndServe(addr, server.Router))
 }
